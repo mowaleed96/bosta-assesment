@@ -1,0 +1,27 @@
+{
+  "name": "bosta-be",
+  "version": "1.0.0",
+  "description": "bosta BE assessment implementation",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint ./src --fix",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mowaleed96/bosta-assesment.git"
+  },
+  "author": "mhmd.waleed@outlook.com <mowaleed96>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mowaleed96/bosta-assesment/issues"
+  },
+  "homepage": "https://github.com/mowaleed96/bosta-assesment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0"
+  }
+}

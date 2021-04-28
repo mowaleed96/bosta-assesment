@@ -1,7 +1,7 @@
 module.exports = {
   PORT: process.env.PORT || 3000,
   db: process.env.MONGODB_URL || 'mongodb://localhost/nodejs_dev',
-  email: process.env.EMAIL || 'm7mdoscar@gmail.com',
+  email: process.env.EMAIL || '',
   emailPW: process.env.EMAIL_PASSWORD || '',
   emailService: process.env.EMAIL_SERVICE || 'gmail',
   baseURL: process.env.BASE_URL || 'http://192.168.1.2:3000',

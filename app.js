@@ -1,5 +1,9 @@
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+
+const config = require('./config');
+const { routes } = require('./src');
 
 const app = express();
 
@@ -9,12 +13,22 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(routes);
+
+const listen = () => app.listen(config.PORT, () => {
+  console.log(`Listening on port ${config.PORT}`);
 });
 
-const server = app.listen(process.env.PORT || 3000, () => {
-  console.log(`Listening on port ${server.address().port}`);
-});
+const connect = () => {
+  mongoose.connection
+    .on('error', console.log)
+    .on('disconnected', connect)
+    .once('open', listen);
+  return mongoose.connect(config.db, {
+    keepAlive: 1,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
+
+connect();

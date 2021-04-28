@@ -1,7 +1,8 @@
 const { Schema } = require('mongoose');
 
 module.exports = new Schema({
-  checkId: { type: String, required: true },
+  checkId: { type: String, required: true, unique: true },
+  url: String,
   status: String,
   availability: Number,
   outages: Number,

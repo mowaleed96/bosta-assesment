@@ -36,6 +36,13 @@ const removeCheck = async (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getUrlSubscriptions = (url) => new Promise((resolve, reject) => {
+  CheckModel
+    .find({ url })
+    .then((doc) => resolve(doc))
+    .catch((error) => reject(error));
+});
+
 module.exports = {
-  createCheck, getAllChecks, getCheckById, updateCheck, removeCheck,
+  createCheck, getAllChecks, getCheckById, updateCheck, removeCheck, getUrlSubscriptions,
 };

@@ -34,6 +34,13 @@ const getUserById = async (userId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getMultipleUsersByIds = async (userIds) => new Promise((resolve, reject) => {
+  UserModel
+    .findOne({ _id: { $in: userIds } })
+    .then((user) => resolve(user))
+    .catch((error) => reject(error));
+});
+
 const verifyUser = (userId, token) => new Promise((resolve, reject) => {
   TokenModel
     .findOneAndDelete({ _userId: userId, token })
@@ -54,4 +61,5 @@ module.exports = {
   getUser,
   getUserById,
   verifyUser,
+  getMultipleUsersByIds,
 };

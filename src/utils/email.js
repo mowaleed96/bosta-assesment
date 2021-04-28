@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const send = ({
+const send = async ({
   to = '', subject = '', text = null, html = null,
 }) => {
   const mailOptions = {
@@ -20,12 +20,14 @@ const send = ({
     from: 'no-reply@bosta.co',
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`Email sent: ${info.response}`);
-    }
+  return new Promise((resolve, reject) => {
+    transporter
+      .sendMail(mailOptions)
+      .then((info) => {
+        console.log(`Email sent: ${info.response}`);
+        resolve();
+      })
+      .catch((error) => reject(error));
   });
 };
 

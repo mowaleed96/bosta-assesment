@@ -2,7 +2,7 @@
 const _ = require('lodash');
 const { StatusCodes } = require('http-status-codes');
 const { UserModel, TokenModel } = require('../models');
-const { createHash } = require('../utils/hash');
+const { createHash } = require('../utils/password');
 
 const setUserActive = (userId) => UserModel.updateOne(
   { _id: userId }, { active: true },

@@ -5,12 +5,16 @@ const {
   createCheck, getAllChecks, getCheckById, updateCheck, removeCheck,
 } = require('../services').userService;
 
+const { initReport } = require('../services').reportService;
+
 const create = async (req, res, next) => {
   const { body, session } = req;
   const userId = session.userData._id;
 
   try {
-    await createCheck({ userId, ...body });
+    const check = await createCheck({ userId, ...body });
+    await initReport(check._id, check.url);
+
     res.statusCode = StatusCodes.CREATED;
     res.data = {
       message: 'Check created',
@@ -44,10 +48,10 @@ const getAll = async (req, res, next) => {
 };
 
 const get = async (req, res, next) => {
-  const { body } = req;
+  const { checkId } = req.query;
 
   try {
-    const check = await getCheckById(body._id);
+    const check = await getCheckById(checkId);
     res.statusCode = StatusCodes.OK;
     res.data = {
       check,

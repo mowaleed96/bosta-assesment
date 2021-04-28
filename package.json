@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon app.js",
     "lint": "eslint ./src --fix",
-    "test": "test"
+    "test": "test",
+    "docker": "docker-compose up -d --build && docker exec -it  /bin/bash"
   },
   "repository": {
     "type": "git",
